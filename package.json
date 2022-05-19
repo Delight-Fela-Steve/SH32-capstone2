@@ -1,0 +1,23 @@
+{
+  "name": "sh32-capstone2",
+  "version": "1.0.0",
+  "description": "This is the final capstone project for the Side Hustle Internship 5.0 built by group 32",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Delight-Fela-Steve/SH32-capstone2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Delight-Fela-Steve/SH32-capstone2/issues"
+  },
+  "homepage": "https://github.com/Delight-Fela-Steve/SH32-capstone2#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
