@@ -45,8 +45,8 @@ class Property {
         });
     }
 
-    static findByType(Type, cb) {
-        db.query(findPropertyByType, Type, (err, res) => {
+    static findByType(type, cb) {
+        db.query(findPropertyByType, [type], (err, res) => {
             if (err) {
                 logger.error(err.message);
                 cb(err, null);
@@ -75,7 +75,7 @@ class Property {
         })
     }
     
-    static getAllProperties(){
+    static getAllProperties(cb){
         db.query(getProperties, (err, res)=>{
             if (err){
                 logger.error(err.message);
@@ -90,7 +90,7 @@ class Property {
         })
     }
 
-    static getProperty(id){
+    static getProperty(id, cb){
         db.query(getPropertyQuery,[parseInt(id)], (err,res)=>{
             if (err){
                 logger.error(err.message);
@@ -101,12 +101,12 @@ class Property {
                 cb(null, res[0]);
                 return;
             }
-            cb({kind:"No property"}, null);
+            cb({kind:"not_found"}, null);
         })
     }
 
-    static updateProperty(field, value, id){
-        db.query(updatePropertyQuery, [field, value, parseInt(id)], (err, res)=>{
+    static updateProperty(update, id, cb){
+        db.query(updatePropertyQuery, [update.field, update.value, parseInt(id)], (err, res)=>{
             if (err){
                 logger.error(err.message);
                 cb(err, null);
@@ -116,7 +116,7 @@ class Property {
                 cb(null, res[0]);
                 return;
             }
-            cb({kind:"No property"}, null);
+            cb({kind:"not_found"}, null);
         })
     }
 
@@ -131,7 +131,7 @@ class Property {
                 cb(null, res[0]);
                 return;
             }
-            cb({kind:"No property"}, null);
+            cb({kind:"not_found"}, null);
         })
     }
 }
