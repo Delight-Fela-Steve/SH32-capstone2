@@ -18,3 +18,15 @@ exports.createProperty=(req,res)=>{
         }
     })
 }
+
+exports.getProperties=(req,res)=>{};
+
+exports.getProperty = (req,res)=>{};
+
+exports.getPropertyByType = (req,res)=>{};
+
+exports.updateProperty = (req, res)=>{};
+
+exports.updatePropertyStatus = (req, res)=>{};
+
+exports.deleteProperty = (req, res)=>{};

@@ -1,5 +1,5 @@
 const db = require('../config/db.config');
-const {createNewProperty, findPropertyByType, updatePropertyStatus} = require('../database/queries');
+const {createNewProperty, findPropertyByType, updatePropertyStatus, getProperties, getProperty, deleteProperty} = require('../database/queries');
 const { logger } = require('../utils/logger');
 
 class Property {
