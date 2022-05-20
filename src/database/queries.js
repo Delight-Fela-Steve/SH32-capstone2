@@ -51,6 +51,15 @@ SELECT * FROM properties WHERE type = ?
 
 const updatePropertyStatus = `UPDATE properties SET status = ? WHERE id = ?`;
 
+const getProperties = `SELECT * FROM properties`;
+
+const getProperty = `SELECT * FROM properties WHERE id=?`;
+
+const updateProperty = `UPDATE properties SET ? = ? WHERE id=?`;
+
+const deleteProperty = `UPDATE properties SET ? = ? WHERE id=?`;
+
+
 module.exports = {
     createDB,
     dropDB,
@@ -60,5 +69,9 @@ module.exports = {
     createTableProperties,
     createNewProperty,
     findPropertyByType,
-    updatePropertyStatus
+    updatePropertyStatus,
+    getProperties,
+    getProperty,
+    updateProperty,
+    deleteProperty
 };
