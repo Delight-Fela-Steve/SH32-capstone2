@@ -9,65 +9,80 @@ exports.create_property=(req,res)=>{
                 status: "error",
                 error: err.message
             });
+            return;
         }
-        {
-            res.status(201).send({
-                status:"success",
-                data:data
-            })
-        }
+        res.status(201).send({
+            status:"success",
+            data:data
+        });
+        return;
     })
 }
 
 exports.get_all_properties=(req,res)=>{
     Property.getAllProperties((err, data)=>{
         if(err){
+            if(err.kind=="no_properties"){
+                res.status(200).send({
+                    status:"success",
+                    data:data
+                });
+                return;
+            }
             res.status(500).send({
                 status: "error",
                 error: err.message
             });
+            return;
         }
-        {
-            res.status(200).send({
-                status:"success",
-                data:data
-            })
-        }
+        res.status(200).send({
+            status:"success",
+            data:data
+        });
+        return;
     })
 };
 
 exports.get_property = (req,res)=>{
     Property.getProperty(req.params.id,(err, data)=>{
         if(err){
+            if (err.kind =="not_found"){
+                res.status(404).send({status:"error", error:err.kind});
+                return;
+            }
             res.status(500).send({
                 status: "error",
                 error: err.message
             });
+            return;
         }
-        {
-            res.status(200).send({
-                status:"success",
-                data:data
-            })
-        }
-    })
+        res.status(200).send({
+            status:"success",
+            data:data
+        });
+        return;
+})
 };
 
 exports.find_by_type = (req,res)=>{
-    const { type } = req.query;
+    const type = req.query.type;
     Property.findByType(type, (err, data)=>{
         if(err){
+            if (err.kind =="not_found"){
+                res.status(404).send({status:"error", error:err.kind})
+                return;
+            }
             res.status(500).send({
                 status: "error",
                 error: err.message
             });
+            return;
         }
-        {
-            res.status(200).send({
-                status:"success",
-                data:data
-            })
-        }
+        res.status(200).send({
+            status:"success",
+            data:data
+        })
+        return;
     })
 };
 
@@ -80,17 +95,20 @@ exports.update_status = (req, res)=>{
     newStatus = {status:status, id:req.params.id }
     Property.updateStatus(newStatus, (err, data)=>{
         if(err){
+            if (err.kind =="not_found"){
+                res.status(404).send({status:"error", error:err.kind})
+            }
             res.status(500).send({
                 status: "error",
                 error: err.message
             });
+            return;
         }
-        {
-            res.status(200).send({
-                status:"success",
-                data:data
-            })
-        }
+        res.status(200).send({
+            status:"success",
+            data:data
+        });
+        return;
     })
 };
 

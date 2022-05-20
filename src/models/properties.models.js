@@ -86,7 +86,7 @@ class Property {
                 cb(null, res[0]);
                 return;
             }
-            cb({kind:"No properties"}, null);
+            cb({kind:"no_properties"}, res);
         })
     }
 
@@ -106,7 +106,7 @@ class Property {
     }
 
     static updateProperty(update, id, cb){
-        db.query(updatePropertyQuery, [update.field, update.value, parseInt(id)], (err, res)=>{
+        db.query(updatePropertyQuery, [...update, parseInt(id)], (err, res)=>{
             if (err){
                 logger.error(err.message);
                 cb(err, null);
