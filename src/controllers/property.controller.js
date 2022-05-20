@@ -54,7 +54,7 @@ exports.get_property = (req,res)=>{
 };
 
 exports.find_by_type = (req,res)=>{
-    const { type } = req.body;
+    const { type } = req.query;
     Property.findByType(type, (err, data)=>{
         if(err){
             res.status(500).send({
