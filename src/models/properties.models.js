@@ -1,5 +1,5 @@
 const db = require('../config/db.config');
-const {createNewProperty, findPropertyByType, updatePropertyStatus, getProperties, getProperty, deleteProperty} = require('../database/queries');
+const {createNewProperty, findPropertyByType, updatePropertyStatus, getProperties, getProperty:getPropertyQuery,updateProperty:updatePropertyQuery, deleteProperty:deletePropertyQuery} = require('../database/queries');
 const { logger } = require('../utils/logger');
 
 class Property {
@@ -14,7 +14,7 @@ class Property {
         this.image_url = image_url;
     }
 
-    static create(newProperty, cb) {
+    static createProperty(newProperty, cb) {
         db.query(createNewProperty, 
             [
                 newProperty.owner,
@@ -72,6 +72,66 @@ class Property {
                 return;
             }
             cb({kind:"couldn't update"}, null);
+        })
+    }
+    
+    static getAllProperties(){
+        db.query(getProperties, (err, res)=>{
+            if (err){
+                logger.error(err.message);
+                cb(err, null);
+                return;
+            }
+            if (res.length){
+                cb(null, res[0]);
+                return;
+            }
+            cb({kind:"No properties"}, null);
+        })
+    }
+
+    static getProperty(id){
+        db.query(getPropertyQuery,[parseInt(id)], (err,res)=>{
+            if (err){
+                logger.error(err.message);
+                cb(err, null);
+                return;
+            }
+            if (res.length){
+                cb(null, res[0]);
+                return;
+            }
+            cb({kind:"No property"}, null);
+        })
+    }
+
+    static updateProperty(field, value, id){
+        db.query(updatePropertyQuery, [field, value, parseInt(id)], (err, res)=>{
+            if (err){
+                logger.error(err.message);
+                cb(err, null);
+                return;
+            }
+            if (res.length){
+                cb(null, res[0]);
+                return;
+            }
+            cb({kind:"No property"}, null);
+        })
+    }
+
+    static deleteProperty(id){
+        db.query(deletePropertyQuery, [id], (err, res)=>{
+            if (err){
+                logger.error(err.message);
+                cb(err, null);
+                return;
+            }
+            if (res.length){
+                cb(null, res[0]);
+                return;
+            }
+            cb({kind:"No property"}, null);
         })
     }
 }
