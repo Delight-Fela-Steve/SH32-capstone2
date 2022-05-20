@@ -120,7 +120,7 @@ class Property {
         })
     }
 
-    static deleteProperty(id){
+    static deleteProperty(id, cb){
         db.query(deletePropertyQuery, [id], (err, res)=>{
             if (err){
                 logger.error(err.message);
