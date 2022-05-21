@@ -12,13 +12,16 @@ CREATE TABLE IF NOT EXISTS users (
     firstname VARCHAR(50) NULL,
     lastname VARCHAR(50) NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
+    phone VARCHAR(255) NULL,
+    address VARCHAR(1000) NULL,
+    is_admin BOOL NOT NULL DEFAULT 0,
     password VARCHAR(255) NOT NULL,
     created_on TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
 )
 `;
 
 const createNewUser = `
-INSERT INTO users VALUES(null, ?, ?, ?, ?, NOW())
+INSERT INTO users VALUES(null, ?, ?, ?, ?, ?, ?, ?, NOW())
 `;
 
 const findUserByEmail = `
@@ -42,7 +45,7 @@ CREATE TABLE IF NOT EXISTS properties (
 `;
 
 const createNewProperty = `
-INSERT INTO properties VALUES(null, ?, ?, ?, ?, ?, ?. ?, ?, NOW())
+INSERT INTO properties VALUES(null, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
 `;
 
 const findPropertyByType = `

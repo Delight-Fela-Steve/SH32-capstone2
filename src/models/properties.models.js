@@ -53,7 +53,7 @@ class Property {
                 return;
             }
             if (res.length) {
-                cb(null, res[0]);
+                cb(null, res);
                 return;
             }
             cb({ kind: "not_found" }, null);
@@ -83,7 +83,7 @@ class Property {
                 return;
             }
             if (res.length){
-                cb(null, res[0]);
+                cb(null, res);
                 return;
             }
             cb({kind:"no_properties"}, res);

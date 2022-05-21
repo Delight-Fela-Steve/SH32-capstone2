@@ -3,7 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 
-// const authRoute = require('./routes/auth.route');
+const authRoute = require('./routes/user.route');
 const propertyRoute = require('./routes/properties.route')
 
 const { httpLogStream } = require('./utils/logger');
@@ -16,7 +16,7 @@ app.use(morgan('dev'));
 app.use(morgan('combined', { stream: httpLogStream }));
 app.use(cors());
 
-// app.use('/api/v1/auth', authRoute);
+app.use('/api/v1/user', authRoute);
 app.use('/api/v1/property', propertyRoute);
 
 app.get('/', (req, res) => {
