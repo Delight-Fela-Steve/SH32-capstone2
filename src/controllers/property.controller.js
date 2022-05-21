@@ -2,7 +2,7 @@ const Property = require('../models/properties.models');
 
 exports.create_property=(req,res)=>{
     const {owner, status, price, state, city, address, type, image_url} = req.body;
-    const property = new Property(parseInt(owner.trim()),status.trim(),price.trim(),state.trim(),city.trim(),address.trim(), type.trim(), image_url.trim())
+    const property = new Property(parseInt(owner), status.trim(), price, state.trim(), city.trim(), address.trim(), type.trim(), image_url.trim())
     Property.createProperty(property,(err, data)=>{
         if(err){
             res.status(500).send({

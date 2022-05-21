@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS users (
 `;
 
 const createNewUser = `
-INSERT INTO users VALUES(null, ?, ?, ?, ?, ?, ?, ? NOW())
+INSERT INTO users VALUES(null, ?, ?, ?, ?, ?, ?, ?, NOW())
 `;
 
 const findUserByEmail = `
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS properties (
 `;
 
 const createNewProperty = `
-INSERT INTO properties VALUES(null, ?, ?, ?, ?, ?, ?. ?, ?, NOW())
+INSERT INTO properties VALUES(null, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
 `;
 
 const findPropertyByType = `

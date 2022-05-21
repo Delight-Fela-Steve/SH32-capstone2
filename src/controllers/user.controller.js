@@ -1,12 +1,11 @@
-const User = require('../models/user.models');
+const User = require('../models/user.model');
 const { hash: hashPassword, compare: comparePassword } = require('../utils/password');
 const { generate: generateToken } = require('../utils/token');
 
 exports.sign_up = (req, res) => {
-    const { firstname, lastname, email, password } = req.body;
+    const { firstname, lastname, email, phone, address, is_admin, password } = req.body;
     const hashedPassword = hashPassword(password.trim());
-
-    const user = new User(firstname.trim(), lastname.trim(), email.trim(), hashedPassword);
+    const user = new User(firstname.trim(), lastname.trim(), email.trim(), phone, address, is_admin, hashedPassword);
 
     User.create(user, (err, data) => {
         if (err) {
@@ -50,10 +49,11 @@ exports.sign_in = (req, res) => {
                 res.status(200).send({
                     status: 'success',
                     data: {
-                        token,
+                        id:data.id,
                         firstname: data.firstname,
                         lastname: data.lastname,
-                        email: data.email
+                        email: data.email,
+                        token
                     }
                 });
                 return;

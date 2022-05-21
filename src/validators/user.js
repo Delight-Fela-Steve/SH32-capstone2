@@ -29,7 +29,7 @@ const signup = (req, res, next) => {
             .min(3)
             .max(50),
         is_admin: Joi.boolean()
-            .describe(false),
+            .default(false),
         password: Joi.string()
             .trim()
             .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))
